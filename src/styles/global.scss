@@ -1,0 +1,14 @@
+@import './tokens.scss';
+
+page {
+  min-height: 100%;
+  color: $color-text;
+  background: $color-bg;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  padding: $space-page;
+  box-sizing: border-box;
+}

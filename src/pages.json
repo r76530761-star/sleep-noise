@@ -1,0 +1,73 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "睡眠白噪音",
+        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/category/index",
+      "style": {
+        "navigationBarTitleText": "声音分类",
+        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/player/index",
+      "style": {
+        "navigationBarTitleText": "正在播放",
+        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/favorites/index",
+      "style": {
+        "navigationBarTitleText": "收藏",
+        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/settings/index",
+      "style": {
+        "navigationBarTitleText": "设置",
+        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "backgroundColor": "#101419",
+    "backgroundColorBottom": "#101419",
+    "backgroundColorTop": "#101419",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "睡眠白噪音"
+  },
+  "tabBar": {
+    "color": "#aeb7c2",
+    "selectedColor": "#f4f0e8",
+    "backgroundColor": "#101419",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/favorites/index",
+        "text": "收藏"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "text": "设置"
+      }
+    ]
+  }
+}
