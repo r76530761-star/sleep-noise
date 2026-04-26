@@ -1,16 +1,29 @@
-[
+﻿[
   {
-    "id": "rain-night-001",
-    "title": "雨夜入眠",
+    "id": "rain-window-001",
+    "title": "窗边细雨",
+    "category": "rain",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/rain-window-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/rain-window-001.jpg",
+    "tags": ["雨声", "窗边", "助眠"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#rain-window-001"
+  },
+  {
+    "id": "rain-night-002",
+    "title": "夜雨白噪音",
     "category": "rain",
     "scene": ["sleep"],
     "duration": 1800,
-    "audioUrl": "https://cdn.example.com/audio/rain-night-001.mp3",
-    "coverUrl": "https://cdn.example.com/covers/rain-night-001.jpg",
-    "tags": ["雨声", "睡眠", "夜晚"],
+    "audioUrl": "https://cdn.example.com/audio/rain-night-002.mp3",
+    "coverUrl": "https://cdn.example.com/covers/rain-night-002.jpg",
+    "tags": ["夜雨", "睡前", "白噪音"],
     "isPremium": false,
     "sourceType": "licensed-free",
-    "copyrightRef": "copyright-ledger.csv#rain-night-001"
+    "copyrightRef": "copyright-ledger.csv#rain-night-002"
   },
   {
     "id": "ocean-soft-001",
@@ -26,6 +39,19 @@
     "copyrightRef": "copyright-ledger.csv#ocean-soft-001"
   },
   {
+    "id": "ocean-deep-002",
+    "title": "深夜潮汐",
+    "category": "ocean",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/ocean-deep-002.mp3",
+    "coverUrl": "https://cdn.example.com/covers/ocean-deep-002.jpg",
+    "tags": ["潮汐", "深夜", "海边"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#ocean-deep-002"
+  },
+  {
     "id": "forest-night-001",
     "title": "森林夜息",
     "category": "forest",
@@ -37,5 +63,71 @@
     "isPremium": false,
     "sourceType": "ai-generated",
     "copyrightRef": "copyright-ledger.csv#forest-night-001"
+  },
+  {
+    "id": "forest-birds-002",
+    "title": "清晨林间",
+    "category": "forest",
+    "scene": ["relax", "nap"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/forest-birds-002.mp3",
+    "coverUrl": "https://cdn.example.com/covers/forest-birds-002.jpg",
+    "tags": ["森林", "鸟鸣", "午休"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#forest-birds-002"
+  },
+  {
+    "id": "wind-soft-001",
+    "title": "轻风过林",
+    "category": "wind",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/wind-soft-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/wind-soft-001.jpg",
+    "tags": ["风声", "自然", "放松"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#wind-soft-001"
+  },
+  {
+    "id": "fireplace-001",
+    "title": "壁炉火焰",
+    "category": "fire",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/fireplace-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/fireplace-001.jpg",
+    "tags": ["火焰", "壁炉", "温暖"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#fireplace-001"
+  },
+  {
+    "id": "stream-gentle-001",
+    "title": "溪流缓响",
+    "category": "stream",
+    "scene": ["relax", "nap"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/stream-gentle-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/stream-gentle-001.jpg",
+    "tags": ["溪流", "自然", "午休"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#stream-gentle-001"
+  },
+  {
+    "id": "meditation-bowl-001",
+    "title": "冥想音钵",
+    "category": "meditation",
+    "scene": ["relax", "focus"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/meditation-bowl-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/meditation-bowl-001.jpg",
+    "tags": ["冥想", "音钵", "放松"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#meditation-bowl-001"
   }
 ]
+
