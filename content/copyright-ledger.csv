@@ -1,0 +1,4 @@
+audio_id,title,category,source_platform,source_url,license_type,commercial_use,attribution_required,download_date,processing,asset_path,cover_source,notes
+rain-night-001,雨夜入眠,rain,爱给网,https://example.com/source/rain-night-001,free-commercial,yes,no,2026-04-26,normalized and loop checked,cdn/audio/rain-night-001.mp3,licensed image,source URL must match the downloaded commercial-use asset
+ocean-soft-001,轻柔海浪,ocean,Pikbest,https://example.com/source/ocean-soft-001,free-commercial,yes,no,2026-04-26,normalized and loop checked,cdn/audio/ocean-soft-001.mp3,licensed image,source URL must match the downloaded commercial-use asset
+forest-night-001,森林夜息,forest,AI generated,local-generation-record,owned-generation,yes,no,2026-04-26,generated and normalized,cdn/audio/forest-night-001.mp3,AI generated,save generation record before release

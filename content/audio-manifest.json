@@ -1,0 +1,41 @@
+[
+  {
+    "id": "rain-night-001",
+    "title": "雨夜入眠",
+    "category": "rain",
+    "scene": ["sleep"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/rain-night-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/rain-night-001.jpg",
+    "tags": ["雨声", "睡眠", "夜晚"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#rain-night-001"
+  },
+  {
+    "id": "ocean-soft-001",
+    "title": "轻柔海浪",
+    "category": "ocean",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/ocean-soft-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/ocean-soft-001.jpg",
+    "tags": ["海浪", "放松", "睡眠"],
+    "isPremium": false,
+    "sourceType": "licensed-free",
+    "copyrightRef": "copyright-ledger.csv#ocean-soft-001"
+  },
+  {
+    "id": "forest-night-001",
+    "title": "森林夜息",
+    "category": "forest",
+    "scene": ["sleep", "relax"],
+    "duration": 1800,
+    "audioUrl": "https://cdn.example.com/audio/forest-night-001.mp3",
+    "coverUrl": "https://cdn.example.com/covers/forest-night-001.jpg",
+    "tags": ["森林", "夜晚", "自然"],
+    "isPremium": false,
+    "sourceType": "ai-generated",
+    "copyrightRef": "copyright-ledger.csv#forest-night-001"
+  }
+]
