@@ -1,7 +1,7 @@
 <template>
   <view class="controls">
     <button class="secondary" @tap="$emit('previous')">上一首</button>
-    <button class="primary" @tap="$emit(isPlaying ? 'pause' : 'play')">
+    <button class="primary" @tap="handlePrimaryTap">
       {{ isPlaying ? '暂停' : '播放' }}
     </button>
     <button class="secondary" @tap="$emit('next')">下一首</button>
@@ -9,16 +9,24 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   isPlaying: boolean
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   play: []
   pause: []
   previous: []
   next: []
 }>()
+
+function handlePrimaryTap(): void {
+  if (props.isPlaying) {
+    emit('pause')
+  } else {
+    emit('play')
+  }
+}
 </script>
 
 <style scoped lang="scss">
