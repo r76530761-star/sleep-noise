@@ -2,10 +2,17 @@
   <view class="timer">
     <text class="label">定时关闭</text>
     <view class="options">
-      <button v-for="option in options" :key="option" @tap="$emit('select', option)">
+      <button
+        v-for="option in options"
+        :key="option"
+        class="timer-button"
+        @tap="$emit('select', option)"
+      >
         {{ option }} 分钟
       </button>
-      <button @tap="$emit('cancel')">关闭</button>
+      <button class="timer-button timer-button--ghost" @tap="$emit('cancel')">
+        关闭
+      </button>
     </view>
   </view>
 </template>
@@ -41,7 +48,7 @@ defineEmits<{
   gap: 8px;
 }
 
-button {
+.timer-button {
   height: 36px;
   padding: 0;
   color: #f4f0e8;
@@ -49,5 +56,13 @@ button {
   line-height: 36px;
   background: #202833;
   border-radius: 8px;
+}
+
+.timer-button::after {
+  border: 0;
+}
+
+.timer-button--ghost {
+  color: #d6ad75;
 }
 </style>

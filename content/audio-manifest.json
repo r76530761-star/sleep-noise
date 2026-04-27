@@ -96,7 +96,7 @@
     "category": "fire",
     "scene": ["sleep", "relax"],
     "duration": 42,
-    "audioUrl": "https://raw.githubusercontent.com/r76530761-star/sleep-noise/main/assets/raw-audio/Crackling-bark-wood-in-a-closed-fireplace.mp3",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/r76530761-star/sleep-noise@main/assets/raw-audio/Crackling-bark-wood-in-a-closed-fireplace.mp3",
     "coverUrl": "/static/covers/fireplace-001.png",
     "tags": ["火焰", "壁炉", "温暖"],
     "isPremium": false,
