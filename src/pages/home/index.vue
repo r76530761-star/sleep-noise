@@ -7,65 +7,64 @@
       <view class="star star--three" />
     </view>
 
-    <view class="header">
-      <text class="brand">Drift</text>
-      <text class="title">Sleep Descent</text>
-      <text class="subtitle">A gentle 30-minute ritual from waking into sleep.</text>
-    </view>
-
-    <view class="timer-shell" @tap="startDescent">
-      <view class="timer-ring">
-        <text class="timer-label">Tonight</text>
-        <text class="timer-value">30:00</text>
-        <text class="timer-action">{{ player.isPlaying ? 'Drifting' : 'Tap to begin' }}</text>
+    <view class="content">
+      <view class="header">
+        <text class="brand">Drift</text>
+        <text class="title">Sleep Descent</text>
+        <text class="subtitle">A gentle 30-minute ritual from waking into sleep.</text>
       </view>
-    </view>
 
-    <button class="start-button" @tap="startDescent">
-      {{ player.isPlaying ? 'Sleep Descent Active' : 'Start Sleep Descent' }}
-    </button>
+      <view class="timer-shell" @tap="startDescent">
+        <view class="timer-ring">
+          <text class="timer-label">Tonight</text>
+          <text class="timer-value">30:00</text>
+          <text class="timer-action">{{ player.isPlaying ? 'Drifting' : 'Tap to begin' }}</text>
+        </view>
+      </view>
 
-    <view class="protocol-switch">
-      <button
-        v-for="protocol in protocols"
-        :key="protocol.id"
-        class="protocol-pill"
-        :class="{
-          'protocol-pill--active': protocol.id === selectedProtocolId,
-          'protocol-pill--reserved': protocol.status === 'reserved',
-        }"
-        @tap="selectProtocol(protocol.id)"
-      >
-        {{ protocol.title }}
+      <button class="start-button" @tap="startDescent">
+        {{ player.isPlaying ? 'Sleep Descent Active' : 'Start Sleep Descent' }}
       </button>
-    </view>
 
-    <view class="protocol-card">
-      <view class="pulse">
-        <text class="pulse-mark">≋</text>
+      <view class="protocol-switch">
+        <button
+          v-for="protocol in protocols"
+          :key="protocol.id"
+          class="protocol-pill"
+          :class="{ 'protocol-pill--active': protocol.id === selectedProtocolId }"
+          @tap="selectProtocol(protocol.id)"
+        >
+          {{ protocol.title }}
+        </button>
       </view>
-      <view class="protocol-copy">
-        <text class="protocol-title">{{ selectedProtocol.title }}</text>
-        <text class="protocol-meta">{{ selectedProtocol.mixLabel }}</text>
-        <text class="protocol-note">{{ selectedProtocol.fadeLabel }}</text>
-      </view>
-    </view>
 
-    <view class="ritual-notes">
-      <view class="note">
-        <text class="note-icon">◷</text>
-        <text class="note-title">30 minutes</text>
-        <text class="note-caption">single session</text>
+      <view class="protocol-card">
+        <view class="pulse">
+          <text class="pulse-mark">~</text>
+        </view>
+        <view class="protocol-copy">
+          <text class="protocol-title">{{ selectedProtocol.title }}</text>
+          <text class="protocol-meta">{{ selectedProtocol.mixLabel }}</text>
+          <text class="protocol-note">{{ selectedProtocol.fadeLabel }}</text>
+        </view>
       </view>
-      <view class="note">
-        <text class="note-icon">◌</text>
-        <text class="note-title">one ritual</text>
-        <text class="note-caption">low effort</text>
-      </view>
-      <view class="note">
-        <text class="note-icon">◐</text>
-        <text class="note-title">fade out</text>
-        <text class="note-caption">in audio</text>
+
+      <view class="ritual-notes">
+        <view class="note">
+          <text class="note-icon">30</text>
+          <text class="note-title">30 minutes</text>
+          <text class="note-caption">single session</text>
+        </view>
+        <view class="note">
+          <text class="note-icon">01</text>
+          <text class="note-title">one ritual</text>
+          <text class="note-caption">low effort</text>
+        </view>
+        <view class="note">
+          <text class="note-icon">-</text>
+          <text class="note-title">fade out</text>
+          <text class="note-caption">in audio</text>
+        </view>
       </view>
     </view>
   </view>
@@ -73,14 +72,14 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { getPrimaryProtocol, DRIFT_PROTOCOLS, getProtocolById } from '../../services/protocol-service'
-import { recordSleepSession } from '../../services/storage-service'
+import { getPrimaryProtocol, getProtocolById, getVisibleProtocols } from '../../services/protocol-service'
+import { recordSleepSession, setDefaultProtocolId } from '../../services/storage-service'
 import { useLibraryStore } from '../../store/library-store'
 import { usePlayerStore } from '../../store/player-store'
 
 const library = useLibraryStore()
 const player = usePlayerStore()
-const protocols = DRIFT_PROTOCOLS
+const protocols = getVisibleProtocols()
 const selectedProtocolId = ref(getPrimaryProtocol().id)
 
 const selectedProtocol = computed(() => getProtocolById(selectedProtocolId.value) ?? getPrimaryProtocol())
@@ -91,15 +90,8 @@ function selectProtocol(protocolId: string): void {
     return
   }
 
-  if (protocol.status === 'reserved') {
-    uni.showToast({
-      title: 'Coming soon',
-      icon: 'none',
-    })
-    return
-  }
-
   selectedProtocolId.value = protocol.id
+  setDefaultProtocolId(protocol.id)
 }
 
 async function startDescent(): Promise<void> {
@@ -117,7 +109,7 @@ async function startDescent(): Promise<void> {
   }
 
   await player.play(track)
-  player.startSleepTimer(30)
+  player.startSleepTimer(selectedProtocol.value.durationMinutes)
   recordSleepSession()
 }
 </script>
@@ -133,6 +125,11 @@ async function startDescent(): Promise<void> {
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
 }
 
 .moon {
@@ -170,9 +167,9 @@ async function startDescent(): Promise<void> {
 }
 
 .header {
-  position: relative;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 8px;
   margin-top: 30px;
   text-align: center;
@@ -181,7 +178,6 @@ async function startDescent(): Promise<void> {
 .brand {
   color: #9ea8d8;
   font-size: 13px;
-  letter-spacing: 0;
 }
 
 .title {
@@ -199,9 +195,9 @@ async function startDescent(): Promise<void> {
 }
 
 .timer-shell {
-  position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 280px;
   height: 280px;
   margin: 56px auto 22px;
@@ -214,14 +210,15 @@ async function startDescent(): Promise<void> {
 }
 
 .timer-ring {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 236px;
   height: 236px;
   border: 1px solid rgba(246, 241, 230, 0.2);
   border-radius: 50%;
   background: rgba(7, 18, 36, 0.76);
-  backdrop-filter: blur(10px);
 }
 
 .timer-label {
@@ -255,13 +252,13 @@ async function startDescent(): Promise<void> {
 }
 
 .protocol-switch {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 10px;
   margin-top: 18px;
 }
 
 .protocol-pill {
+  flex: 1;
   height: 38px;
   color: #aeb8d4;
   font-size: 13px;
@@ -276,13 +273,8 @@ async function startDescent(): Promise<void> {
   border-color: rgba(199, 184, 255, 0.7);
 }
 
-.protocol-pill--reserved {
-  opacity: 0.52;
-}
-
 .protocol-card {
-  display: grid;
-  grid-template-columns: 50px 1fr;
+  display: flex;
   gap: 14px;
   align-items: center;
   margin-top: 20px;
@@ -293,8 +285,9 @@ async function startDescent(): Promise<void> {
 }
 
 .pulse {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -307,7 +300,9 @@ async function startDescent(): Promise<void> {
 }
 
 .protocol-copy {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 4px;
 }
 
@@ -324,15 +319,16 @@ async function startDescent(): Promise<void> {
 }
 
 .ritual-notes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 10px;
   margin-top: 22px;
 }
 
 .note {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
   gap: 5px;
   min-height: 78px;
   padding: 12px 6px;
@@ -342,7 +338,7 @@ async function startDescent(): Promise<void> {
 
 .note-icon {
   color: #c7b8ff;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .note-title {
