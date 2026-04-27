@@ -1,5 +1,12 @@
+import {
+  calculateNextSessionSummary,
+  toLocalDateKey,
+} from './protocol-service'
+import type { SessionSummary } from '../types/protocol'
+
 const FAVORITES_KEY = 'sleep-noise:favorites'
 const RECENT_PLAYS_KEY = 'sleep-noise:recent-plays'
+const SESSION_SUMMARY_KEY = 'drift:session-summary'
 const MAX_RECENT_PLAYS = 20
 
 function readStringArray(key: string): string[] {
@@ -36,4 +43,39 @@ export function getRecentPlays(): string[] {
 export function addRecentPlay(trackId: string): void {
   const next = [trackId, ...getRecentPlays().filter((id) => id !== trackId)].slice(0, MAX_RECENT_PLAYS)
   writeStringArray(RECENT_PLAYS_KEY, next)
+}
+
+export function getSessionSummary(): SessionSummary {
+  const value = uni.getStorageSync(SESSION_SUMMARY_KEY)
+  if (!isSessionSummary(value)) {
+    return {
+      consecutiveNights: 0,
+      sessionCount: 0,
+      lastSessionDate: undefined,
+    }
+  }
+
+  return value
+}
+
+export function recordSleepSession(date = new Date()): SessionSummary {
+  const next = calculateNextSessionSummary(getSessionSummary(), toLocalDateKey(date))
+  uni.setStorageSync(SESSION_SUMMARY_KEY, next)
+  return next
+}
+
+function isSessionSummary(value: unknown): value is SessionSummary {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+
+  const candidate = value as Partial<SessionSummary>
+  return (
+    typeof candidate.consecutiveNights === 'number'
+    && typeof candidate.sessionCount === 'number'
+    && (
+      candidate.lastSessionDate === undefined
+      || typeof candidate.lastSessionDate === 'string'
+    )
+  )
 }

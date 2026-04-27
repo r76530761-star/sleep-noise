@@ -3,70 +3,57 @@
     {
       "path": "pages/home/index",
       "style": {
-        "navigationBarTitleText": "睡眠白噪音",
-        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTitleText": "Drift",
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#030713",
         "navigationBarTextStyle": "white"
       }
     },
     {
-      "path": "pages/category/index",
+      "path": "pages/history/index",
       "style": {
-        "navigationBarTitleText": "声音分类",
-        "navigationBarBackgroundColor": "#101419",
-        "navigationBarTextStyle": "white"
-      }
-    },
-    {
-      "path": "pages/player/index",
-      "style": {
-        "navigationBarTitleText": "正在播放",
-        "navigationBarBackgroundColor": "#101419",
-        "navigationBarTextStyle": "white"
-      }
-    },
-    {
-      "path": "pages/favorites/index",
-      "style": {
-        "navigationBarTitleText": "收藏",
-        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTitleText": "History",
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#030713",
         "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/settings/index",
       "style": {
-        "navigationBarTitleText": "设置",
-        "navigationBarBackgroundColor": "#101419",
+        "navigationBarTitleText": "Settings",
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#030713",
         "navigationBarTextStyle": "white"
       }
     }
   ],
   "globalStyle": {
-    "backgroundColor": "#101419",
-    "backgroundColorBottom": "#101419",
-    "backgroundColorTop": "#101419",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#030713",
+    "backgroundColorBottom": "#030713",
+    "backgroundColorTop": "#030713",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#030713",
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "睡眠白噪音"
+    "navigationBarTitleText": "Drift"
   },
   "tabBar": {
-    "color": "#aeb7c2",
-    "selectedColor": "#f4f0e8",
-    "backgroundColor": "#101419",
+    "color": "#7e8ba6",
+    "selectedColor": "#c7b8ff",
+    "backgroundColor": "#08101f",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "Tonight"
       },
       {
-        "pagePath": "pages/favorites/index",
-        "text": "收藏"
+        "pagePath": "pages/history/index",
+        "text": "History"
       },
       {
         "pagePath": "pages/settings/index",
-        "text": "设置"
+        "text": "Settings"
       }
     ]
   }

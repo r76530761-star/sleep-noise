@@ -9,6 +9,18 @@ page {
 
 .page {
   min-height: 100vh;
-  padding: $space-page;
+  padding: calc($space-page + 20px) $space-page $space-page;
   box-sizing: border-box;
+  background:
+    radial-gradient(circle at 72% 20%, rgba(246, 210, 139, 0.16), transparent 8%),
+    radial-gradient(circle at 45% 48%, rgba(72, 123, 174, 0.28), transparent 34%),
+    linear-gradient(180deg, #07142a 0%, #07101e 42%, #02050d 100%);
+}
+
+button {
+  margin: 0;
+}
+
+button::after {
+  border: 0;
 }
