@@ -13,10 +13,12 @@ describe('protocol-service', () => {
   it('exposes drift01 as the primary protocol', () => {
     expect(getPrimaryProtocol()).toMatchObject({
       id: 'drift01',
-      title: 'Drift 01',
-      mixLabel: 'Brown Noise + Ocean',
+      title: 'Drift',
+      mixLabel: 'Pink Noise + Ocean',
+      localizedMixLabel: '粉噪 + 海浪',
       durationMinutes: 30,
       fadeLabel: 'Auto Fade Out',
+      localizedFadeLabel: '自动渐隐',
       status: 'active',
     })
   })
@@ -25,7 +27,8 @@ describe('protocol-service', () => {
     expect(getProtocolById('drift01')?.id).toBe('drift01')
     expect(getProtocolById('drift-01')?.id).toBe('drift01')
     expect(getProtocolById('drift_deep')?.id).toBe('drift_deep')
-    expect(getProtocolById('ocean_calm')?.id).toBe('ocean_calm')
+    expect(getProtocolById('ocean_calm')?.id).toBe('calm_drift')
+    expect(getProtocolById('calm_drift')?.id).toBe('calm_drift')
     expect(getProtocolById('rain_night')?.id).toBe('rain_night')
   })
 
@@ -53,8 +56,8 @@ describe('protocol-service', () => {
     expect(DRIFT_PROTOCOLS.map((protocol) => protocol.id)).toEqual([
       'drift01',
       'drift_deep',
-      'ocean_calm',
       'rain_night',
+      'calm_drift',
     ])
   })
 

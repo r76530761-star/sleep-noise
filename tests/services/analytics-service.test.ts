@@ -15,13 +15,13 @@ describe('analytics-service', () => {
   })
 
   it('tracks NFC source and requested protocol id', () => {
-    const resolution = resolveProtocolForEntry('ocean_calm', undefined)
+    const resolution = resolveProtocolForEntry('rain_night', undefined)
     const event = trackNfcEntry('nfc', resolution, new Date('2026-04-27T12:00:00.000Z'))
 
     expect(event).toEqual({
       source: 'nfc',
-      protocolId: 'ocean_calm',
-      resolvedProtocolId: 'ocean_calm',
+      protocolId: 'rain_night',
+      resolvedProtocolId: 'rain_night',
       matched: true,
       fallbackReason: 'matched',
       createdAt: '2026-04-27T12:00:00.000Z',

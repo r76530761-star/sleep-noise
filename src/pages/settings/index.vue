@@ -1,69 +1,60 @@
 <template>
   <view class="page settings">
     <view class="header">
-      <text class="eyebrow">Settings</text>
-      <text class="title">Drift</text>
-      <text class="subtitle">Keep the ritual simple.</text>
+      <text class="brand">Drift</text>
+      <text class="title">设置</text>
     </view>
 
     <view class="group">
+      <text class="group-title">播放行为</text>
+
       <view class="row">
         <view class="row-copy">
-          <text class="row-title">Timer</text>
-          <text class="row-caption">30 minutes</text>
+          <text class="row-title">使用默认助眠</text>
+          <text class="row-caption">每晚从已选择的助眠开始</text>
         </view>
-        <text class="row-status">fixed</text>
+        <text class="row-status">开启</text>
       </view>
 
       <view class="row">
         <view class="row-copy">
-          <text class="row-title">Sound Mix</text>
-          <text class="row-caption">Protocol audio controls the fade</text>
+          <text class="row-title">继续上次助眠</text>
+          <text class="row-caption">保留最近一次选择</text>
         </view>
-        <text class="row-status">soon</text>
+        <text class="row-status">开启</text>
       </view>
-
-      <view class="row">
-        <view class="row-copy">
-          <text class="row-title">Notifications</text>
-          <text class="row-caption">Evening ritual reminder</text>
-        </view>
-        <text class="row-status">soon</text>
-      </view>
-    </view>
-
-    <view class="shell-card">
-      <text class="shell-kicker">Sleep Shell</text>
-      <text class="shell-title">{{ shell.label }}</text>
-      <text class="shell-caption">Reserved for future NFC hardware entry.</text>
     </view>
 
     <view class="group">
-      <button class="link-row" @tap="openDocument('privacy')">Privacy</button>
-      <button class="link-row" @tap="openDocument('terms')">Terms</button>
-      <button class="link-row" @tap="openDocument('copyright')">Audio Rights</button>
-      <button class="link-row" open-type="feedback">Feedback</button>
+      <text class="group-title">预留</text>
+
+      <view class="row">
+        <view class="row-copy">
+          <text class="row-title">管理 Tide Shell</text>
+          <text class="row-caption">后续用于硬件入口和 NFC 设置</text>
+        </view>
+        <text class="row-status">future</text>
+      </view>
     </view>
 
-    <text class="version">Prototype 0.2.0</text>
+    <view class="group">
+      <button class="link-row" @tap="openDocument('privacy')">隐私政策</button>
+      <button class="link-row" @tap="openDocument('terms')">用户协议</button>
+      <button class="link-row" open-type="feedback">反馈</button>
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { SLEEP_SHELL_STATE } from '../../services/protocol-service'
-
-const shell = SLEEP_SHELL_STATE
-
-function openDocument(type: 'privacy' | 'terms' | 'copyright'): void {
+function openDocument(type: 'privacy' | 'terms'): void {
   const titleMap = {
-    privacy: 'Privacy',
-    terms: 'Terms',
-    copyright: 'Audio Rights',
+    privacy: '隐私政策',
+    terms: '用户协议',
   }
 
   uni.showModal({
     title: titleMap[type],
-    content: 'This document will be finalized before submission.',
+    content: '正式上线前将替换为完整文档。',
     showCancel: false,
   })
 }
@@ -71,41 +62,41 @@ function openDocument(type: 'privacy' | 'terms' | 'copyright'): void {
 
 <style scoped lang="scss">
 .settings {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: 22px;
 }
 
 .header {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
   margin-top: 34px;
 }
 
-.eyebrow {
-  color: #9ea8d8;
-  font-size: 13px;
+.brand {
+  color: #f4f0e8;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
 }
 
 .title {
-  color: #f7f0e6;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 34px;
-  line-height: 40px;
-}
-
-.subtitle {
   color: #aeb8d4;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .group {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
+.group-title {
+  color: #8f9bb8;
+  font-size: 13px;
+}
+
 .row,
-.shell-card,
 .link-row {
   border: 1px solid rgba(212, 224, 255, 0.14);
   border-radius: 8px;
@@ -113,15 +104,16 @@ function openDocument(type: 'privacy' | 'terms' | 'copyright'): void {
 }
 
 .row {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   gap: 12px;
   align-items: center;
+  justify-content: space-between;
   padding: 15px;
 }
 
 .row-copy {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
@@ -130,33 +122,14 @@ function openDocument(type: 'privacy' | 'terms' | 'copyright'): void {
   font-size: 15px;
 }
 
-.row-caption,
-.shell-caption {
+.row-caption {
   color: #8f9bb8;
   font-size: 12px;
-  line-height: 18px;
 }
 
 .row-status {
   color: #c7b8ff;
   font-size: 12px;
-}
-
-.shell-card {
-  display: grid;
-  gap: 7px;
-  padding: 18px;
-  background: rgba(33, 46, 82, 0.58);
-}
-
-.shell-kicker {
-  color: #c7b8ff;
-  font-size: 12px;
-}
-
-.shell-title {
-  color: #f5f1ea;
-  font-size: 18px;
 }
 
 .link-row {
@@ -166,11 +139,5 @@ function openDocument(type: 'privacy' | 'terms' | 'copyright'): void {
   font-size: 14px;
   line-height: 46px;
   text-align: left;
-}
-
-.version {
-  color: #73809c;
-  font-size: 12px;
-  text-align: center;
 }
 </style>

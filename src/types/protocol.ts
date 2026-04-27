@@ -11,6 +11,7 @@ export interface SleepProtocol {
   durationMinutes: SleepTimerMinutes
   fadeLabel: string
   localizedFadeLabel: string
+  icon: string
   status: ProtocolStatus
   audioTrackId: string
   visibleInSwitcher: boolean
