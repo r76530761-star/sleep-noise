@@ -16,6 +16,14 @@ function isSupportedCoverUrl(value: string): boolean {
   return value.startsWith('https://') || value.startsWith('/static/')
 }
 
+function getPriorityScore(track: AudioTrack): number {
+  if (track.id === 'fireplace-001') {
+    return 0
+  }
+
+  return track.scene.includes('sleep') ? 1 : 2
+}
+
 export function validateAudioManifest(tracks: AudioTrack[]): void {
   const ids = new Set<string>()
 
@@ -43,10 +51,6 @@ export function groupTracksByCategory(tracks: AudioTrack[]): AudioCategoryGroup[
 
 export function getRecommendedTracks(tracks: AudioTrack[], limit = 6): AudioTrack[] {
   return [...tracks]
-    .sort((left, right) => {
-      const leftScore = left.scene.includes('sleep') ? 0 : 1
-      const rightScore = right.scene.includes('sleep') ? 0 : 1
-      return leftScore - rightScore
-    })
+    .sort((left, right) => getPriorityScore(left) - getPriorityScore(right))
     .slice(0, limit)
 }
