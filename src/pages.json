@@ -54,15 +54,15 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "Tonight"
+        "text": "今晚"
       },
       {
         "pagePath": "pages/history/index",
-        "text": "History"
+        "text": "记录"
       },
       {
         "pagePath": "pages/settings/index",
-        "text": "Settings"
+        "text": "设置"
       }
     ]
   }

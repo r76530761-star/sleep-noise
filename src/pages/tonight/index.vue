@@ -6,39 +6,49 @@
       <view class="star star--two" />
     </view>
 
-    <view class="shell-detected">
-      <text class="shell-dot" />
-      <text class="shell-text">Sleep Shell detected</text>
-    </view>
+    <view class="content">
+      <view class="shell-detected">
+        <text class="shell-dot" />
+        <text class="shell-text">Sleep Shell detected</text>
+      </view>
 
-    <view class="header">
-      <text class="brand">Drift</text>
-      <text class="title">Sleep Descent</text>
-      <text class="subtitle">Your Sleep Shell opened tonight's ritual.</text>
-    </view>
+      <view class="brand-row">
+        <text class="brand">Drift</text>
+      </view>
 
-    <view class="timer-shell">
-      <view class="timer-ring">
-        <text class="timer-label">Tonight</text>
-        <text class="timer-value">30:00</text>
-        <text class="timer-action">Ready when you are</text>
+      <view class="timer-shell">
+        <view class="timer-ring">
+          <text class="timer-label">今晚</text>
+          <text class="timer-value">30:00</text>
+          <text class="timer-action">轻触开始</text>
+        </view>
+      </view>
+
+      <button class="start-button" @tap="startDescent">
+        {{ player.isPlaying ? '入睡仪式已开启' : '开始入睡' }}
+      </button>
+
+      <view class="protocol-card">
+        <view class="pulse">
+          <text class="pulse-mark">~</text>
+        </view>
+        <view class="protocol-copy">
+          <text class="protocol-title">{{ selectedProtocol.title }}</text>
+          <text class="protocol-meta">{{ selectedProtocol.localizedMixLabel }}</text>
+          <text class="protocol-note">30分钟 · {{ selectedProtocol.localizedFadeLabel }}</text>
+        </view>
+      </view>
+
+      <view class="shell-card">
+        <view class="shell-icon">
+          <text class="shell-mark">T</text>
+        </view>
+        <view class="shell-copy">
+          <text class="shell-title">已通过 Tide Shell 启动</text>
+          <text class="shell-caption">今晚进入 {{ selectedProtocol.title }}</text>
+        </view>
       </view>
     </view>
-
-    <view class="protocol-card">
-      <view class="pulse">
-        <text class="pulse-mark">~</text>
-      </view>
-      <view class="protocol-copy">
-        <text class="protocol-title">{{ selectedProtocol.title }}</text>
-        <text class="protocol-meta">{{ selectedProtocol.mixLabel }}</text>
-        <text class="protocol-note">{{ selectedProtocol.fadeLabel }}</text>
-      </view>
-    </view>
-
-    <button class="start-button" @tap="startDescent">
-      {{ player.isPlaying ? 'Sleep Descent Active' : 'Start Sleep Descent' }}
-    </button>
   </view>
 </template>
 
@@ -82,7 +92,7 @@ async function startDescent(): Promise<void> {
   const track = library.allTracks.find((item) => item.id === selectedProtocol.value.audioTrackId)
   if (!track) {
     uni.showToast({
-      title: 'Protocol audio unavailable',
+      title: '协议音频不可用',
       icon: 'none',
     })
     return
@@ -107,15 +117,20 @@ async function startDescent(): Promise<void> {
   pointer-events: none;
 }
 
+.content {
+  position: relative;
+  z-index: 1;
+}
+
 .moon {
   position: absolute;
-  top: 112px;
-  right: 46px;
-  width: 36px;
-  height: 36px;
+  top: 92px;
+  right: 52px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   box-shadow: -9px 3px 0 #f6d28b;
-  opacity: 0.95;
+  opacity: 0.78;
 }
 
 .star {
@@ -123,22 +138,21 @@ async function startDescent(): Promise<void> {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(230, 238, 255, 0.78);
+  background: rgba(230, 238, 255, 0.72);
 }
 
 .star--one {
-  top: 86px;
+  top: 104px;
   left: 54px;
 }
 
 .star--two {
-  top: 162px;
-  right: 86px;
+  top: 196px;
+  right: 76px;
 }
 
 .shell-detected {
-  display: inline-grid;
-  grid-auto-flow: column;
+  display: inline-flex;
   gap: 8px;
   align-items: center;
   margin-top: 24px;
@@ -160,61 +174,51 @@ async function startDescent(): Promise<void> {
   font-size: 12px;
 }
 
-.header {
-  position: relative;
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-  margin-top: 34px;
-  text-align: center;
+.brand-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
 }
 
 .brand {
-  color: #9ea8d8;
-  font-size: 13px;
-}
-
-.title {
-  color: #f7f0e6;
+  color: #d8dcf4;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 34px;
-  line-height: 40px;
-}
-
-.subtitle {
-  max-width: 260px;
-  color: #b8c3dc;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .timer-shell {
-  display: grid;
-  place-items: center;
-  width: 278px;
-  height: 278px;
-  margin: 50px auto 22px;
-  border: 1px solid rgba(206, 219, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 282px;
+  height: 282px;
+  margin: 34px auto 22px;
+  border: 1px solid rgba(223, 229, 255, 0.24);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(68, 102, 154, 0.48), rgba(7, 16, 31, 0.18) 62%, transparent 63%),
-    conic-gradient(from 10deg, rgba(167, 156, 255, 0.95), rgba(125, 168, 217, 0.24), rgba(245, 241, 234, 0.62), rgba(167, 156, 255, 0.95));
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.42);
+    radial-gradient(circle, rgba(52, 79, 128, 0.58), rgba(8, 16, 33, 0.18) 62%, transparent 63%),
+    conic-gradient(from 22deg, rgba(241, 226, 213, 0.86), rgba(169, 137, 255, 0.82), rgba(103, 136, 200, 0.32), rgba(241, 226, 213, 0.86));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.44),
+    0 28px 42px rgba(118, 122, 204, 0.14);
 }
 
 .timer-ring {
-  display: grid;
-  place-items: center;
-  width: 234px;
-  height: 234px;
-  border: 1px solid rgba(246, 241, 230, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 236px;
+  height: 236px;
+  border: 1px solid rgba(246, 241, 230, 0.18);
   border-radius: 50%;
-  background: rgba(7, 18, 36, 0.76);
+  background: rgba(7, 17, 35, 0.8);
 }
 
 .timer-label {
-  color: #d7d7ec;
-  font-size: 14px;
+  color: #c3c9df;
+  font-size: 15px;
 }
 
 .timer-value {
@@ -231,58 +235,102 @@ async function startDescent(): Promise<void> {
   font-size: 15px;
 }
 
-.protocol-card {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 14px;
-  align-items: center;
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid rgba(212, 224, 255, 0.16);
+.start-button {
+  width: 100%;
+  height: 56px;
+  color: #08101f;
+  font-size: 17px;
+  line-height: 56px;
+  background: linear-gradient(135deg, #fff2d8, #c7c9ff);
+  border-radius: 999px;
+  box-shadow: 0 16px 36px rgba(167, 156, 255, 0.2);
+}
+
+.protocol-card,
+.shell-card {
+  border: 1px solid rgba(212, 224, 255, 0.14);
   border-radius: 8px;
-  background: rgba(15, 25, 48, 0.72);
+  background: rgba(13, 24, 47, 0.68);
 }
 
-.pulse {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
+.protocol-card {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 18px;
+}
+
+.pulse,
+.shell-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: rgba(167, 156, 255, 0.18);
+  background: rgba(167, 156, 255, 0.16);
 }
 
-.pulse-mark {
+.pulse-mark,
+.shell-mark {
   color: #c7b8ff;
   font-size: 28px;
 }
 
-.protocol-copy {
-  display: grid;
-  gap: 4px;
+.protocol-copy,
+.shell-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .protocol-title {
   color: #f5f1ea;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
 }
 
-.protocol-meta,
-.protocol-note {
-  color: #aeb8d4;
-  font-size: 13px;
+.protocol-meta {
+  color: #c9d4ea;
+  font-size: 15px;
 }
 
-.start-button {
-  width: 100%;
-  height: 56px;
-  margin-top: 22px;
-  color: #08101f;
-  font-size: 16px;
-  line-height: 56px;
-  background: linear-gradient(135deg, #f7ead0, #b9c3ff);
-  border-radius: 999px;
-  box-shadow: 0 12px 32px rgba(167, 156, 255, 0.22);
+.protocol-note {
+  color: #b9a9ff;
+  font-size: 14px;
+}
+
+.shell-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 15px 16px;
+  background: rgba(12, 22, 42, 0.54);
+}
+
+.shell-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(246, 210, 139, 0.1);
+}
+
+.shell-mark {
+  color: #f6d28b;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.shell-title {
+  color: #edf0ff;
+  font-size: 15px;
+}
+
+.shell-caption {
+  color: #8f9bb8;
+  font-size: 13px;
 }
 </style>

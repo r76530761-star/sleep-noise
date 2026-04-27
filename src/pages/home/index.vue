@@ -8,22 +8,20 @@
     </view>
 
     <view class="content">
-      <view class="header">
+      <view class="brand-row">
         <text class="brand">Drift</text>
-        <text class="title">Sleep Descent</text>
-        <text class="subtitle">A gentle 30-minute ritual from waking into sleep.</text>
       </view>
 
       <view class="timer-shell" @tap="startDescent">
         <view class="timer-ring">
-          <text class="timer-label">Tonight</text>
+          <text class="timer-label">今晚</text>
           <text class="timer-value">30:00</text>
-          <text class="timer-action">{{ player.isPlaying ? 'Drifting' : 'Tap to begin' }}</text>
+          <text class="timer-action">{{ player.isPlaying ? '正在入睡' : '轻触开始' }}</text>
         </view>
       </view>
 
       <button class="start-button" @tap="startDescent">
-        {{ player.isPlaying ? 'Sleep Descent Active' : 'Start Sleep Descent' }}
+        {{ player.isPlaying ? '入睡仪式已开启' : '开始入睡' }}
       </button>
 
       <view class="protocol-switch">
@@ -44,26 +42,18 @@
         </view>
         <view class="protocol-copy">
           <text class="protocol-title">{{ selectedProtocol.title }}</text>
-          <text class="protocol-meta">{{ selectedProtocol.mixLabel }}</text>
-          <text class="protocol-note">{{ selectedProtocol.fadeLabel }}</text>
+          <text class="protocol-meta">{{ selectedProtocol.localizedMixLabel }}</text>
+          <text class="protocol-note">30分钟 · {{ selectedProtocol.localizedFadeLabel }}</text>
         </view>
       </view>
 
-      <view class="ritual-notes">
-        <view class="note">
-          <text class="note-icon">30</text>
-          <text class="note-title">30 minutes</text>
-          <text class="note-caption">single session</text>
+      <view class="shell-card">
+        <view class="shell-icon">
+          <text class="shell-mark">T</text>
         </view>
-        <view class="note">
-          <text class="note-icon">01</text>
-          <text class="note-title">one ritual</text>
-          <text class="note-caption">low effort</text>
-        </view>
-        <view class="note">
-          <text class="note-icon">-</text>
-          <text class="note-title">fade out</text>
-          <text class="note-caption">in audio</text>
+        <view class="shell-copy">
+          <text class="shell-title">Tide Shell</text>
+          <text class="shell-caption">触碰贝壳，开启入睡仪式</text>
         </view>
       </view>
     </view>
@@ -102,7 +92,7 @@ async function startDescent(): Promise<void> {
   const track = library.allTracks.find((item) => item.id === selectedProtocol.value.audioTrackId)
   if (!track) {
     uni.showToast({
-      title: 'Protocol audio unavailable',
+      title: '协议音频不可用',
       icon: 'none',
     })
     return
@@ -134,13 +124,13 @@ async function startDescent(): Promise<void> {
 
 .moon {
   position: absolute;
-  top: 112px;
-  right: 46px;
-  width: 36px;
-  height: 36px;
+  top: 88px;
+  right: 52px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   box-shadow: -9px 3px 0 #f6d28b;
-  opacity: 0.95;
+  opacity: 0.78;
 }
 
 .star {
@@ -148,65 +138,52 @@ async function startDescent(): Promise<void> {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(230, 238, 255, 0.78);
+  background: rgba(230, 238, 255, 0.72);
 }
 
 .star--one {
-  top: 86px;
+  top: 96px;
   left: 54px;
 }
 
 .star--two {
-  top: 162px;
-  right: 86px;
+  top: 188px;
+  right: 76px;
 }
 
 .star--three {
-  top: 248px;
-  left: 84px;
+  top: 276px;
+  left: 82px;
 }
 
-.header {
+.brand-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-top: 30px;
-  text-align: center;
+  justify-content: center;
+  margin-top: 28px;
 }
 
 .brand {
-  color: #9ea8d8;
-  font-size: 13px;
-}
-
-.title {
-  color: #f7f0e6;
+  color: #d8dcf4;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 34px;
-  line-height: 40px;
-}
-
-.subtitle {
-  max-width: 260px;
-  color: #b8c3dc;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .timer-shell {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
-  height: 280px;
-  margin: 56px auto 22px;
-  border: 1px solid rgba(206, 219, 255, 0.22);
+  width: 282px;
+  height: 282px;
+  margin: 34px auto 22px;
+  border: 1px solid rgba(223, 229, 255, 0.24);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(68, 102, 154, 0.48), rgba(7, 16, 31, 0.18) 62%, transparent 63%),
-    conic-gradient(from 10deg, rgba(167, 156, 255, 0.95), rgba(125, 168, 217, 0.24), rgba(245, 241, 234, 0.62), rgba(167, 156, 255, 0.95));
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.42);
+    radial-gradient(circle, rgba(52, 79, 128, 0.58), rgba(8, 16, 33, 0.18) 62%, transparent 63%),
+    conic-gradient(from 22deg, rgba(241, 226, 213, 0.86), rgba(169, 137, 255, 0.82), rgba(103, 136, 200, 0.32), rgba(241, 226, 213, 0.86));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.44),
+    0 28px 42px rgba(118, 122, 204, 0.14);
 }
 
 .timer-ring {
@@ -216,14 +193,14 @@ async function startDescent(): Promise<void> {
   justify-content: center;
   width: 236px;
   height: 236px;
-  border: 1px solid rgba(246, 241, 230, 0.2);
+  border: 1px solid rgba(246, 241, 230, 0.18);
   border-radius: 50%;
-  background: rgba(7, 18, 36, 0.76);
+  background: rgba(7, 17, 35, 0.8);
 }
 
 .timer-label {
-  color: #d7d7ec;
-  font-size: 14px;
+  color: #c3c9df;
+  font-size: 15px;
 }
 
 .timer-value {
@@ -242,112 +219,126 @@ async function startDescent(): Promise<void> {
 
 .start-button {
   width: 100%;
-  height: 54px;
+  height: 56px;
   color: #08101f;
-  font-size: 16px;
-  line-height: 54px;
-  background: linear-gradient(135deg, #f7ead0, #b9c3ff);
+  font-size: 17px;
+  line-height: 56px;
+  background: linear-gradient(135deg, #fff2d8, #c7c9ff);
   border-radius: 999px;
-  box-shadow: 0 12px 32px rgba(167, 156, 255, 0.22);
+  box-shadow: 0 16px 36px rgba(167, 156, 255, 0.2);
 }
 
 .protocol-switch {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-top: 18px;
+  padding: 4px;
+  border: 1px solid rgba(213, 222, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(7, 15, 30, 0.45);
 }
 
 .protocol-pill {
   flex: 1;
   height: 38px;
-  color: #aeb8d4;
-  font-size: 13px;
+  color: rgba(203, 211, 231, 0.54);
+  font-size: 14px;
   line-height: 38px;
-  background: rgba(18, 29, 52, 0.68);
-  border: 1px solid rgba(215, 225, 255, 0.12);
+  background: transparent;
   border-radius: 999px;
 }
 
 .protocol-pill--active {
   color: #f5f1ea;
-  border-color: rgba(199, 184, 255, 0.7);
+  background: rgba(169, 137, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(199, 184, 255, 0.66);
+}
+
+.protocol-card,
+.shell-card {
+  border: 1px solid rgba(212, 224, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(13, 24, 47, 0.68);
 }
 
 .protocol-card {
   display: flex;
-  gap: 14px;
+  gap: 15px;
   align-items: center;
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid rgba(212, 224, 255, 0.16);
-  border-radius: 8px;
-  background: rgba(15, 25, 48, 0.72);
+  margin-top: 18px;
+  padding: 18px;
 }
 
-.pulse {
+.pulse,
+.shell-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  flex: 0 0 auto;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: rgba(167, 156, 255, 0.18);
+  background: rgba(167, 156, 255, 0.16);
 }
 
-.pulse-mark {
+.pulse-mark,
+.shell-mark {
   color: #c7b8ff;
   font-size: 28px;
 }
 
-.protocol-copy {
+.protocol-copy,
+.shell-copy {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .protocol-title {
   color: #f5f1ea;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
 }
 
-.protocol-meta,
+.protocol-meta {
+  color: #c9d4ea;
+  font-size: 15px;
+}
+
 .protocol-note {
-  color: #aeb8d4;
-  font-size: 13px;
+  color: #b9a9ff;
+  font-size: 14px;
 }
 
-.ritual-notes {
+.shell-card {
   display: flex;
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.note {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  gap: 14px;
   align-items: center;
-  gap: 5px;
-  min-height: 78px;
-  padding: 12px 6px;
-  border-radius: 8px;
-  background: rgba(7, 14, 27, 0.48);
+  margin-top: 14px;
+  padding: 15px 16px;
+  background: rgba(12, 22, 42, 0.54);
 }
 
-.note-icon {
-  color: #c7b8ff;
-  font-size: 16px;
+.shell-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(246, 210, 139, 0.1);
 }
 
-.note-title {
-  color: #f5f1ea;
-  font-size: 12px;
+.shell-mark {
+  color: #f6d28b;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
 }
 
-.note-caption {
+.shell-title {
+  color: #edf0ff;
+  font-size: 15px;
+}
+
+.shell-caption {
   color: #8f9bb8;
-  font-size: 11px;
+  font-size: 13px;
 }
 </style>

@@ -7,8 +7,10 @@ export interface SleepProtocol {
   aliases: string[]
   title: string
   mixLabel: string
+  localizedMixLabel: string
   durationMinutes: SleepTimerMinutes
   fadeLabel: string
+  localizedFadeLabel: string
   status: ProtocolStatus
   audioTrackId: string
   visibleInSwitcher: boolean
