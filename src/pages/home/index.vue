@@ -1,9 +1,14 @@
 <template>
   <view class="page home">
-    <view class="sky">
+    <view class="scene">
       <view class="moon" />
       <view class="star star--one" />
       <view class="star star--two" />
+      <view class="ridge ridge--back" />
+      <view class="ridge ridge--front" />
+      <view class="lake lake--one" />
+      <view class="lake lake--two" />
+      <view class="moon-path" />
     </view>
 
     <view class="content">
@@ -21,7 +26,7 @@
 
       <view class="recommend-card">
         <view class="protocol-icon">
-          <text class="protocol-mark">~</text>
+          <text class="protocol-mark">≈</text>
         </view>
         <view class="recommend-copy">
           <text class="card-kicker">今晚推荐</text>
@@ -79,33 +84,35 @@ function openProtocols(): void {
   padding-bottom: 112px;
 }
 
-.sky {
+.scene {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(129, 128, 220, 0.2), transparent 26%),
+    linear-gradient(180deg, #061630 0%, #061225 44%, #030713 100%);
 }
 
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
 .brand {
-  margin-top: 28px;
+  margin-top: 24px;
   color: #f4f0e8;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 28px;
   line-height: 34px;
-  text-align: center;
 }
 
 .moon {
   position: absolute;
   top: 104px;
-  left: 44px;
+  left: 50px;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -118,31 +125,77 @@ function openProtocols(): void {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(230, 238, 255, 0.72);
+  background: rgba(230, 238, 255, 0.66);
 }
 
 .star--one {
-  top: 92px;
+  top: 122px;
   right: 80px;
 }
 
 .star--two {
-  top: 260px;
-  left: 86px;
+  top: 214px;
+  left: 84px;
+}
+
+.ridge {
+  position: absolute;
+  right: -20px;
+  left: -20px;
+  height: 86px;
+  background: rgba(5, 10, 20, 0.72);
+  clip-path: polygon(0 68%, 12% 48%, 24% 58%, 36% 36%, 50% 62%, 64% 45%, 78% 56%, 92% 38%, 100% 62%, 100% 100%, 0 100%);
+}
+
+.ridge--back {
+  top: 326px;
+  opacity: 0.52;
+}
+
+.ridge--front {
+  top: 352px;
+}
+
+.lake {
+  position: absolute;
+  right: 46px;
+  left: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(218, 224, 255, 0.46), transparent);
+}
+
+.lake--one {
+  top: 396px;
+}
+
+.lake--two {
+  top: 408px;
+  opacity: 0.52;
+}
+
+.moon-path {
+  position: absolute;
+  top: 382px;
+  left: 50%;
+  width: 88px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(246, 210, 139, 0.28), transparent 68%);
+  transform: translateX(-50%);
 }
 
 .timer-shell {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 282px;
-  height: 282px;
-  margin: 34px auto 24px;
-  border: 1px solid rgba(223, 229, 255, 0.24);
+  width: 252px;
+  height: 252px;
+  margin: 52px auto 24px;
+  border: 1px solid rgba(223, 229, 255, 0.22);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(54, 80, 130, 0.58), rgba(8, 16, 33, 0.18) 62%, transparent 63%),
-    conic-gradient(from 20deg, rgba(240, 227, 218, 0.88), rgba(164, 132, 252, 0.82), rgba(103, 136, 200, 0.32), rgba(240, 227, 218, 0.88));
+    radial-gradient(circle, rgba(54, 80, 130, 0.58), rgba(8, 16, 33, 0.2) 62%, transparent 63%),
+    conic-gradient(from 22deg, rgba(240, 227, 218, 0.86), rgba(164, 132, 252, 0.82), rgba(70, 96, 154, 0.32), rgba(240, 227, 218, 0.86));
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46);
 }
 
@@ -151,11 +204,11 @@ function openProtocols(): void {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 236px;
-  height: 236px;
-  border: 1px solid rgba(246, 241, 230, 0.18);
+  width: 214px;
+  height: 214px;
+  border: 1px solid rgba(246, 241, 230, 0.16);
   border-radius: 50%;
-  background: rgba(7, 17, 35, 0.82);
+  background: rgba(7, 17, 35, 0.84);
 }
 
 .timer-label {
@@ -167,8 +220,8 @@ function openProtocols(): void {
   margin-top: 12px;
   color: #fff7ed;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 58px;
-  line-height: 64px;
+  font-size: 54px;
+  line-height: 60px;
 }
 
 .timer-action {
@@ -217,7 +270,9 @@ function openProtocols(): void {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: rgba(167, 156, 255, 0.16);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(167, 156, 255, 0.26), transparent 68%),
+    rgba(167, 156, 255, 0.12);
 }
 
 .protocol-mark {
