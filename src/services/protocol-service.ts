@@ -128,7 +128,7 @@ export function resolveProtocolForEntry(
 }
 
 export function formatLastSessionDate(summary: SessionSummary): string {
-  return summary.lastSessionDate ?? 'No sessions yet'
+  return summary.lastSessionDate ?? '暂无记录'
 }
 
 export function calculateNextSessionSummary(

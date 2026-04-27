@@ -1,25 +1,25 @@
 <template>
   <view class="page history">
     <view class="header">
-      <text class="eyebrow">History</text>
-      <text class="title">Quiet proof</text>
-      <text class="subtitle">A small trace of the nights you returned to the ritual.</text>
+      <text class="eyebrow">记录</text>
+      <text class="title">助眠记录</text>
+      <text class="subtitle">记录每一次陪你入睡的夜晚</text>
     </view>
 
     <view class="stats">
       <view class="stat stat--primary">
         <text class="stat-value">{{ summary.consecutiveNights }}</text>
-        <text class="stat-label">consecutive nights</text>
+        <text class="stat-label">连续助眠次数</text>
       </view>
 
       <view class="stat">
         <text class="stat-value">{{ summary.sessionCount }}</text>
-        <text class="stat-label">sessions</text>
+        <text class="stat-label">助眠总次数</text>
       </view>
     </view>
 
     <view class="last-card">
-      <text class="last-label">Last Sleep Descent</text>
+      <text class="last-label">最近一次助眠</text>
       <text class="last-value">{{ lastSession }}</text>
     </view>
   </view>
@@ -41,13 +41,14 @@ onShow(() => {
 
 <style scoped lang="scss">
 .history {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: 28px;
 }
 
 .header {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
   margin-top: 34px;
 }
@@ -72,8 +73,7 @@ onShow(() => {
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  display: flex;
   gap: 12px;
 }
 
@@ -86,7 +86,9 @@ onShow(() => {
 }
 
 .stat {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -108,7 +110,8 @@ onShow(() => {
 }
 
 .last-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 

@@ -83,7 +83,7 @@ describe('protocol-service', () => {
       consecutiveNights: 0,
       sessionCount: 0,
       lastSessionDate: undefined,
-    })).toBe('No sessions yet')
+    })).toBe('暂无记录')
   })
 
   it('formats local dates as stable keys', () => {
