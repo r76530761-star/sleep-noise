@@ -42,6 +42,17 @@
       />
     </view>
 
+    <view class="detail-card">
+      <view class="detail-icon" :class="`detail-icon--${selectedProtocol.icon}`">
+        <text class="detail-icon-text">{{ iconText(selectedProtocol.icon) }}</text>
+      </view>
+      <view class="detail-copy">
+        <text class="detail-title">{{ selectedProtocol.title }}</text>
+        <text class="detail-tagline">{{ selectedProtocol.tagline }}</text>
+        <text class="detail-text">{{ detailText }}</text>
+      </view>
+    </view>
+
     <button class="confirm-button" @tap="confirmSelection">使用此助眠</button>
   </view>
 </template>
@@ -66,11 +77,19 @@ const touchStartX = ref(0)
 
 const selectedProtocol = computed(() => protocols[selectedIndex.value] ?? getPrimaryProtocol())
 const accentClass = computed(() => `accent-${selectedProtocol.value.icon}`)
+const detailText = computed(() => detailTextMap[selectedProtocol.value.id] ?? '柔和声音帮助身体慢慢安静下来')
 const coverCards = computed<CoverCard[]>(() => [
   { slot: 'left', protocol: protocols[wrappedIndex(selectedIndex.value - 1)] },
   { slot: 'center', protocol: selectedProtocol.value },
   { slot: 'right', protocol: protocols[wrappedIndex(selectedIndex.value + 1)] },
 ])
+
+const detailTextMap: Record<string, string> = {
+  drift01: '稳定的粉噪和海浪声，帮助多数夜晚自然放松',
+  drift_deep: '更低、更慢的海潮声，适合进入深层放松',
+  rain_night: '细密雨声覆盖杂念，让注意力缓慢沉下来',
+  calm_drift: '轻柔氛围音帮助慢慢放松',
+}
 
 function selectCard(slot: CardSlot): void {
   if (slot === 'left') {
@@ -131,7 +150,7 @@ function iconText(icon: string): string {
 .protocols {
   position: relative;
   overflow: hidden;
-  padding-bottom: 118px;
+  padding-bottom: 120px;
   --accent: #c7b8ff;
   --accent-soft: rgba(199, 184, 255, 0.2);
 }
@@ -229,13 +248,13 @@ function iconText(icon: string): string {
 .cover-flow {
   position: relative;
   z-index: 1;
-  height: 382px;
-  margin-top: 42px;
+  height: 360px;
+  margin-top: 38px;
 }
 
 .protocol-card {
   position: absolute;
-  top: 22px;
+  top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -260,7 +279,7 @@ function iconText(icon: string): string {
     0 0 34px var(--accent-soft),
     0 24px 64px rgba(4, 8, 18, 0.5);
   opacity: 1;
-  transform: translateX(-50%) scale(1);
+  transform: translateX(-50%);
 }
 
 .protocol-card--left,
@@ -268,18 +287,18 @@ function iconText(icon: string): string {
   z-index: 2;
   width: 180px;
   height: 295px;
-  opacity: 0.82;
-  filter: saturate(0.82);
+  opacity: 0.84;
+  filter: saturate(0.84);
 }
 
 .protocol-card--left {
-  left: -86px;
-  transform: rotate(-9deg) scale(0.92);
+  left: -82px;
+  transform: rotate(-5deg);
 }
 
 .protocol-card--right {
-  right: -86px;
-  transform: rotate(9deg) scale(0.92);
+  right: -82px;
+  transform: rotate(5deg);
 }
 
 .icon-shell {
@@ -304,25 +323,29 @@ function iconText(icon: string): string {
   margin-bottom: 32px;
 }
 
-.icon-shell--wave {
+.icon-shell--wave,
+.detail-icon--wave {
   background:
     radial-gradient(circle at 50% 48%, rgba(139, 122, 230, 0.32), transparent 68%),
     linear-gradient(180deg, rgba(30, 42, 84, 0.9), rgba(14, 26, 55, 0.78));
 }
 
-.icon-shell--moon-tide {
+.icon-shell--moon-tide,
+.detail-icon--moon-tide {
   background:
     radial-gradient(circle at 42% 38%, rgba(246, 210, 139, 0.24), transparent 28%),
     rgba(22, 34, 68, 0.82);
 }
 
-.icon-shell--rain {
+.icon-shell--rain,
+.detail-icon--rain {
   background:
     radial-gradient(circle at 50% 82%, rgba(139, 122, 230, 0.28), transparent 30%),
     rgba(13, 28, 52, 0.82);
 }
 
-.icon-shell--arc {
+.icon-shell--arc,
+.detail-icon--arc {
   background:
     radial-gradient(circle at 50% 92%, rgba(246, 210, 139, 0.22), transparent 30%),
     rgba(19, 29, 57, 0.82);
@@ -383,7 +406,7 @@ function iconText(icon: string): string {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .dot {
@@ -395,6 +418,58 @@ function iconText(icon: string): string {
 
 .dot--active {
   background: var(--accent);
+}
+
+.detail-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid rgba(212, 224, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(12, 22, 42, 0.5);
+}
+
+.detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+.detail-icon-text {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.detail-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-title {
+  color: #f4f0e8;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.detail-tagline {
+  color: #c7b8ff;
+  font-size: 13px;
+}
+
+.detail-text {
+  color: #8f9bb8;
+  font-size: 13px;
+  line-height: 19px;
 }
 
 .confirm-button {
