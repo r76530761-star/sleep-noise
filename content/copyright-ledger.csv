@@ -1,11 +1,12 @@
-﻿"audio_id","title","category","source_platform","source_url","license_type","commercial_use","attribution_required","download_date","processing","asset_path","cover_source","cover_path","selection_status","notes"
-"rain-window-001","窗边细雨","rain","","","","","","","normalize volume; verify loop point","","","candidate","Prefer low thunder and soft continuous texture",""
-"rain-night-002","夜雨白噪音","rain","","","","","","","normalize volume; verify loop point","","","candidate","No sudden drops or strong windshield noise",""
-"ocean-soft-001","轻柔海浪","ocean","","","","","","","normalize volume; verify loop point","","","candidate","Look for even surf without gulls",""
-"ocean-deep-002","深夜潮汐","ocean","","","","","","","normalize volume; verify loop point","","","candidate","Avoid harsh crashing peaks",""
-"forest-night-001","森林夜息","forest","","","","","","","normalize volume; verify loop point","","","candidate","Can be AI-generated if rights are clear",""
-"forest-birds-002","清晨林间","forest","","","","","","","normalize volume; verify loop point","","","candidate","Keep bird calls sparse and not too bright",""
-"wind-soft-001","轻风过林","wind","","","","","","","normalize volume; verify loop point","","","candidate","Avoid whistling spikes",""
-"fireplace-001","壁炉火焰","fire","directory.audio","https://directory.audio/sound-effects/household/32825-crackling-bark-wood-in-a-closed-fireplace","CC0","yes","no","2026-04-27","runtime loop test first; normalize volume if needed","D:\控糖APP\sleep-noise\assets\raw-audio\Crackling-bark-wood-in-a-closed-fireplace.mp3","","D:\控糖APP\sleep-noise\assets\rights-evidence\fireplace-001\source_page_screenshot&license.png","selected-for-runtime-loop-test","Detail page shows CC0 on the asset itself and links to the Creative Commons CC0 page; combined screenshot is acceptable for current sample validation"
-"stream-gentle-001","溪流缓响","stream","","","","","","","normalize volume; verify loop point","","","candidate","Soft stream rather than waterfall roar",""
-"meditation-bowl-001","冥想音钵","meditation","","","","","","","normalize volume; verify loop point","","","candidate","Use only if tone is sparse and soothing",""
+﻿audio_id,title,category,source_platform,source_url,license_type,commercial_use,attribution_required,download_date,processing,asset_path,cover_source,cover_path,selection_status,notes
+rain-window-001,窗边细雨,rain,,,,,,,normalize volume; verify loop point,,,candidate,Prefer low thunder and soft continuous texture
+rain-night-002,夜雨白噪音,rain,,,,,,,normalize volume; verify loop point,,,candidate,No sudden drops or strong windshield noise
+ocean-soft-001,轻柔海浪,ocean,,,,,,,normalize volume; verify loop point,,,candidate,Look for even surf without gulls
+ocean-deep-002,深夜潮汐,ocean,,,,,,,normalize volume; verify loop point,,,candidate,Avoid harsh crashing peaks
+forest-night-001,森林夜息,forest,,,,,,,normalize volume; verify loop point,,,candidate,Can be AI-generated if rights are clear
+forest-birds-002,清晨林间,forest,,,,,,,normalize volume; verify loop point,,,candidate,Keep bird calls sparse and not too bright
+wind-soft-001,轻风过林,wind,,,,,,,normalize volume; verify loop point,,,candidate,Avoid whistling spikes
+fireplace-001,壁炉火焰,fire,directory.audio,https://directory.audio/sound-effects/household/32825-crackling-bark-wood-in-a-closed-fireplace,CC0,yes,no,2026-04-27,runtime loop test first; normalize volume if needed,D:\控糖APP\sleep-noise\assets\raw-audio\Crackling-bark-wood-in-a-closed-fireplace.mp3,,D:\控糖APP\sleep-noise\assets\rights-evidence\fireplace-001\source_page_screenshot&license.png,selected-for-runtime-loop-test,Detail page shows CC0 on the asset itself and links to the Creative Commons CC0 page; combined screenshot is acceptable for current sample validation
+stream-gentle-001,溪流缓响,stream,,,,,,,normalize volume; verify loop point,,,candidate,Soft stream rather than waterfall roar
+meditation-bowl-001,冥想音钵,meditation,,,,,,,normalize volume; verify loop point,,,candidate,Use only if tone is sparse and soothing
+

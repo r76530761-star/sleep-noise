@@ -49,6 +49,7 @@ async function playOffset(offset: number): Promise<void> {
   if (!track.value || tracks.length === 0) {
     return
   }
+
   const currentIndex = tracks.findIndex((item) => item.id === track.value?.id)
   const nextIndex = (currentIndex + offset + tracks.length) % tracks.length
   await player.play(tracks[nextIndex])

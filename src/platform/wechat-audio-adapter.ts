@@ -4,8 +4,10 @@ import type { AudioAdapter } from '../types/platform'
 export class WechatAudioAdapter implements AudioAdapter {
   private readonly manager = uni.getBackgroundAudioManager()
   private loop = true
+  private currentTrack: AudioTrack | undefined
 
   async play(track: AudioTrack): Promise<void> {
+    this.currentTrack = track
     this.manager.title = track.title
     this.manager.coverImgUrl = track.coverUrl
     this.manager.src = track.audioUrl
@@ -17,6 +19,7 @@ export class WechatAudioAdapter implements AudioAdapter {
   }
 
   async stop(): Promise<void> {
+    this.currentTrack = undefined
     this.manager.stop()
   }
 
@@ -26,11 +29,12 @@ export class WechatAudioAdapter implements AudioAdapter {
 
   onEnded(callback: () => void): void {
     this.manager.onEnded(() => {
-      if (this.loop) {
-        this.manager.play()
-      } else {
-        callback()
+      if (this.loop && this.currentTrack) {
+        void this.play(this.currentTrack)
+        return
       }
+
+      callback()
     })
   }
 
