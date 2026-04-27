@@ -1,12 +1,11 @@
-﻿audio_id,title,category,primary_scene,backup_scene,search_keywords_cn,search_keywords_en,recommended_source,license_must_be,max_duration_seconds,min_duration_seconds,loop_friendly,download_account,raw_file_name,raw_file_path,cover_file_name,cover_file_path,source_page_screenshot,license_screenshot,selected
-rain-window-001,窗边细雨,rain,sleep,relax,窗边 雨声 室内 助眠,rain window indoor sleep,爱给网,CC0 or commercial-use,3600,900,yes,,,,,,,,no
-rain-night-002,夜雨白噪音,rain,sleep,relax,夜雨 白噪音 睡眠,night rain white noise sleep,爱给网,CC0 or commercial-use,3600,900,yes,,,,,,,,no
-ocean-soft-001,轻柔海浪,ocean,sleep,relax,轻柔 海浪 海边 助眠,soft ocean waves sleep,Pikbest,commercial-use,3600,900,yes,,,,,,,,no
-ocean-deep-002,深夜潮汐,ocean,sleep,relax,潮汐 海浪 夜晚,tide ocean night sleep,Pikbest,commercial-use,3600,900,yes,,,,,,,,no
-forest-night-001,森林夜息,forest,sleep,relax,森林 夜晚 自然 白噪音,forest night ambience sleep,AI or 爱给网,clear commercial rights,3600,900,yes,,,,,,,,no
-forest-birds-002,清晨林间,forest,relax,nap,森林 鸟鸣 清晨 放松,forest birds morning relax,爱给网,CC0 or commercial-use,3600,900,yes,,,,,,,,no
-wind-soft-001,轻风过林,wind,sleep,relax,风声 自然 柔和 助眠,soft wind ambience sleep,爱给网,CC0 or commercial-use,3600,900,yes,,,,,,,,no
-fireplace-001,壁炉火焰,fire,relax,sleep,壁炉 火焰 篝火 放松,fireplace crackling relax,Pikbest,commercial-use,3600,900,yes,,,,,,,,no
-stream-gentle-001,溪流缓响,stream,nap,relax,溪流 小河 自然 放松,gentle stream nature relax,爱给网,CC0 or commercial-use,3600,900,yes,,,,,,,,no
-meditation-bowl-001,冥想音钵,meditation,relax,focus,冥想 音钵 放松,meditation singing bowl relax,AI or 爱给网,clear commercial rights,3600,900,yes,,,,,,,,no
-
+﻿"audio_id","title","category","primary_scene","backup_scene","search_keywords_cn","search_keywords_en","recommended_source","license_must_be","max_duration_seconds","min_duration_seconds","loop_friendly","download_account","raw_file_name","raw_file_path","cover_file_name","cover_file_path","source_page_screenshot","license_screenshot","selected"
+"rain-window-001","����ϸ��","rain","sleep","relax","���� ���� ���� ����","rain window indoor sleep","������","CC0 or commercial-use","3600","900","yes","","","","","","","","no"
+"rain-night-002","ҹ�������","rain","sleep","relax","ҹ�� ������ ˯��","night rain white noise sleep","������","CC0 or commercial-use","3600","900","yes","","","","","","","","no"
+"ocean-soft-001","���ả��","ocean","sleep","relax","���� ���� ���� ����","soft ocean waves sleep","Pikbest","commercial-use","3600","900","yes","","","","","","","","no"
+"ocean-deep-002","��ҹ��ϫ","ocean","sleep","relax","��ϫ ���� ҹ��","tide ocean night sleep","Pikbest","commercial-use","3600","900","yes","","","","","","","","no"
+"forest-night-001","ɭ��ҹϢ","forest","sleep","relax","ɭ�� ҹ�� ��Ȼ ������","forest night ambience sleep","AI or ������","clear commercial rights","3600","900","yes","","","","","","","","no"
+"forest-birds-002","�峿�ּ�","forest","relax","nap","ɭ�� ���� �峿 ����","forest birds morning relax","������","CC0 or commercial-use","3600","900","yes","","","","","","","","no"
+"wind-soft-001","������","wind","sleep","relax","���� ��Ȼ ��� ����","soft wind ambience sleep","������","CC0 or commercial-use","3600","900","yes","","","","","","","","no"
+"fireplace-001","��¯����","fire","relax","sleep","��¯ ���� ��� ����","fireplace crackling relax","directory.audio","CC0 or commercial-use","3600","900","yes","jialin1748@gmail.com","Crackling-bark-wood-in-a-closed-fireplace.mp3","D:\控糖APP\sleep-noise\assets\raw-audio\Crackling-bark-wood-in-a-closed-fireplace.mp3","��¯����","","D:\控糖APP\sleep-noise\assets\rights-evidence\fireplace-001\source_page_screenshot&license.png","D:\控糖APP\sleep-noise\assets\rights-evidence\fireplace-001\source_page_screenshot&license.png","yes"
+"stream-gentle-001","Ϫ������","stream","nap","relax","Ϫ�� С�� ��Ȼ ����","gentle stream nature relax","������","CC0 or commercial-use","3600","900","yes","","","","","","","","no"
+"meditation-bowl-001","ڤ�����","meditation","relax","focus","ڤ�� ��� ����","meditation singing bowl relax","AI or ������","clear commercial rights","3600","900","yes","","","","","","","","no"

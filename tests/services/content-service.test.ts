@@ -40,6 +40,17 @@ describe('content-service', () => {
     expect(() => validateAudioManifest(tracks)).not.toThrow()
   })
 
+  it('accepts local static covers', () => {
+    expect(() =>
+      validateAudioManifest([
+        {
+          ...tracks[0],
+          coverUrl: '/static/covers/fireplace-001.png',
+        },
+      ]),
+    ).not.toThrow()
+  })
+
   it('rejects duplicate track ids', () => {
     expect(() => validateAudioManifest([tracks[0], tracks[0]])).toThrow('Duplicate audio id: rain-night-001')
   })
