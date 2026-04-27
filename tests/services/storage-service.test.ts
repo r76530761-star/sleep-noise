@@ -2,9 +2,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   addFavorite,
   addRecentPlay,
+  getDefaultProtocolId,
   getFavorites,
   getRecentPlays,
   removeFavorite,
+  setDefaultProtocolId,
 } from '../../src/services/storage-service'
 
 const memory = new Map<string, unknown>()
@@ -49,5 +51,13 @@ describe('storage-service', () => {
 
     expect(getRecentPlays()).toHaveLength(20)
     expect(getRecentPlays()[0]).toBe('track-24')
+  })
+
+  it('stores the user default protocol id', () => {
+    expect(getDefaultProtocolId()).toBeUndefined()
+
+    setDefaultProtocolId('rain_night')
+
+    expect(getDefaultProtocolId()).toBe('rain_night')
   })
 })

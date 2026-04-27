@@ -4,13 +4,15 @@ import {
   calculateNextSessionSummary,
   formatLastSessionDate,
   getPrimaryProtocol,
+  getProtocolById,
+  resolveProtocolForEntry,
   toLocalDateKey,
 } from '../../src/services/protocol-service'
 
 describe('protocol-service', () => {
-  it('exposes Drift 01 as the primary protocol', () => {
+  it('exposes drift01 as the primary protocol', () => {
     expect(getPrimaryProtocol()).toMatchObject({
-      id: 'drift-01',
+      id: 'drift01',
       title: 'Drift 01',
       mixLabel: 'Brown Noise + Ocean',
       durationMinutes: 30,
@@ -19,11 +21,41 @@ describe('protocol-service', () => {
     })
   })
 
-  it('keeps Drift 02 as a reserved protocol placeholder', () => {
-    expect(DRIFT_PROTOCOLS[1]).toMatchObject({
-      id: 'drift-02',
-      status: 'reserved',
+  it('matches NFC protocol ids and aliases from the reusable config list', () => {
+    expect(getProtocolById('drift01')?.id).toBe('drift01')
+    expect(getProtocolById('drift-01')?.id).toBe('drift01')
+    expect(getProtocolById('drift_deep')?.id).toBe('drift_deep')
+    expect(getProtocolById('ocean_calm')?.id).toBe('ocean_calm')
+    expect(getProtocolById('rain_night')?.id).toBe('rain_night')
+  })
+
+  it('falls back to user default before primary protocol', () => {
+    const resolution = resolveProtocolForEntry('missing-protocol', 'rain_night')
+
+    expect(resolution).toMatchObject({
+      matched: false,
+      fallbackReason: 'default',
     })
+    expect(resolution.protocol.id).toBe('rain_night')
+  })
+
+  it('falls back to drift01 when request and default are unavailable', () => {
+    const resolution = resolveProtocolForEntry('missing-protocol', undefined)
+
+    expect(resolution).toMatchObject({
+      matched: false,
+      fallbackReason: 'primary',
+    })
+    expect(resolution.protocol.id).toBe('drift01')
+  })
+
+  it('keeps future protocols in config instead of page logic', () => {
+    expect(DRIFT_PROTOCOLS.map((protocol) => protocol.id)).toEqual([
+      'drift01',
+      'drift_deep',
+      'ocean_calm',
+      'rain_night',
+    ])
   })
 
   it('increments consecutive nights only across adjacent dates', () => {

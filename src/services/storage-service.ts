@@ -7,6 +7,7 @@ import type { SessionSummary } from '../types/protocol'
 const FAVORITES_KEY = 'sleep-noise:favorites'
 const RECENT_PLAYS_KEY = 'sleep-noise:recent-plays'
 const SESSION_SUMMARY_KEY = 'drift:session-summary'
+const DEFAULT_PROTOCOL_KEY = 'drift:default-protocol'
 const MAX_RECENT_PLAYS = 20
 
 function readStringArray(key: string): string[] {
@@ -62,6 +63,15 @@ export function recordSleepSession(date = new Date()): SessionSummary {
   const next = calculateNextSessionSummary(getSessionSummary(), toLocalDateKey(date))
   uni.setStorageSync(SESSION_SUMMARY_KEY, next)
   return next
+}
+
+export function getDefaultProtocolId(): string | undefined {
+  const value = uni.getStorageSync(DEFAULT_PROTOCOL_KEY)
+  return typeof value === 'string' && value.length > 0 ? value : undefined
+}
+
+export function setDefaultProtocolId(protocolId: string): void {
+  uni.setStorageSync(DEFAULT_PROTOCOL_KEY, protocolId)
 }
 
 function isSessionSummary(value: unknown): value is SessionSummary {

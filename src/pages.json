@@ -10,6 +10,15 @@
       }
     },
     {
+      "path": "pages/tonight/index",
+      "style": {
+        "navigationBarTitleText": "Drift",
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#030713",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
       "path": "pages/history/index",
       "style": {
         "navigationBarTitleText": "History",
